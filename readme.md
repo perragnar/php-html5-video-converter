@@ -3,6 +3,8 @@
 This simple script uploads a video file and converts it with **ffmpeg** to **mp4** and **webm** format.  
 There's no error handling. This is just a rough initial test to solve a headache of mine.
 
+Note that converting to webm is painfully slow! Just give it some time and make a nice progress bar...
+
 Cheers!
 
 ## Requirements
