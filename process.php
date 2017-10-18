@@ -21,8 +21,7 @@ if(isset($_POST["submit"])) {
     echo '</div>';
 
     // WebM
-    // exec($ffmpeg . ' -i "' . $uploaded_file . '" -vcodec libvpx -acodec libvorbis "./converted/' . $output_name . '.webm" -y 2>&1', $output, $convert);
-    exec($ffmpeg . ' -i "' . $uploaded_file . '" -c:v libvpx -crf 10 -b:v 1M -c:a libvorbis "./converted/' . $output_name . '.webm" -y 2>&1', $output, $convert);
+    exec($ffmpeg . ' -i "' . $uploaded_file . '" -c:v libvpx -r 25 -c:a libvorbis "./converted/' . $output_name . '.webm" -y 2>&1', $output, $convert);
 
     // Debug
     // echo '<pre>' . print_r($output, 1) . ' </pre>';
