@@ -80,7 +80,7 @@ if(isset($_POST['submit'])) {
 <body>
   <div class="hero">
     <h1>Hero Video Demo</h1>
-    <video autoplay loop >
+    <video autoplay loop poster="http://via.placeholder.com/250x300">
       <source src="./converted/<?= $video_mp4; ?>" type="video/mp4">;   
       <source src="./converted/<?= $video_webm; ?>" type="video/webm">
     </video>
