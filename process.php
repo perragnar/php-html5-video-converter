@@ -58,26 +58,27 @@ if(isset($_POST['submit'])) {
       transform: translateY(-50%) translateX(-50%);
     }
 
-    .hero h1 {
+    .hero hgroup {
       position: absolute;
       top: 50%;
       left: 50%;
-      font-size: 60px;
-      color: #ffffff;
-      text-shadow: 3px 3px 0 rgba(0,0,0,.5);
       z-index: 1;
+      text-align: center;
       transform: translateY(-50%) translateX(-50%);
     }
 
+    .hero h1 {
+      font-size: 60px;
+      margin: 0 0 20px;
+      color: #ffffff;
+      text-shadow: 3px 3px 0 rgba(0,0,0,.5);
+    }
+
     .hero h2 {
-      position: absolute;
-      top: 60%;
-      left: 50%;
       font-size: 20px;
+      margin: 0;
       color: #ffffff;
       text-shadow: 2px 2px 0 rgba(0,0,0,.5);
-      z-index: 1;
-      transform: translateY(-50%) translateX(-50%);
     }
 
     .fail {
@@ -99,14 +100,16 @@ if(isset($_POST['submit'])) {
 </head>
 <body>
   <div class="hero">
-    <h1><?php echo $output_name ?></h1>
-    <h2>
-      <?php 
-      echo ($convert_status['mp4'] != 0) ? 'MP4: <span class="fail">Fail</span>' : 'MP4: <span class="success">Success</span>';
-      echo ' - ';
-      echo ($convert_status['webm'] != 0) ? 'WebM: <span class="fail">Fail</span>' : 'WebM: <span class="success">Success</span>';
-      ?>
-    </h2>
+    <hgroup>
+      <h1><?php echo $output_name ?></h1>
+      <h2>
+        <?php 
+        echo ($convert_status['mp4'] != 0) ? 'MP4: <span class="fail">Fail</span>' : 'MP4: <span class="success">Success</span>';
+        echo ' - ';
+        echo ($convert_status['webm'] != 0) ? 'WebM: <span class="fail">Fail</span>' : 'WebM: <span class="success">Success</span>';
+        ?>
+      </h2>
+    </hgroup>
     <video autoplay loop muted poster="http://via.placeholder.com/250x300">
       <source src="./converted/<?= $video_mp4; ?>" type="video/mp4">;   
       <source src="./converted/<?= $video_webm; ?>" type="video/webm">
