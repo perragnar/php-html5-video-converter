@@ -12,7 +12,7 @@ if(isset($_POST['submit'])) {
     
     // MP4
     $video_mp4 = $output_name . '.mp4';
-    exec($ffmpeg . ' -i "' . $uploaded_file . '" -r 25 -c:v libx264 "./converted/' . $video_mp4 . '" -y 2>&1', $output, $convert);
+    exec($ffmpeg . ' -i "' . $uploaded_file . '" -c:v libx264 "./converted/' . $video_mp4 . '" -y 2>&1', $output, $convert);
 
     // Debug
     // echo '<pre>' . print_r($output, 1) . ' </pre>';
@@ -23,7 +23,7 @@ if(isset($_POST['submit'])) {
 
     // WebM
     $video_webm = $output_name . '.webm';
-    exec($ffmpeg . ' -i "' . $uploaded_file . '" -c:v libvpx -r 25 -c:a libvorbis "./converted/' . $video_webm . '" -y 2>&1', $output, $convert);
+    exec($ffmpeg . ' -i "' . $uploaded_file . '" -c:v libvpx -c:a libvorbis "./converted/' . $video_webm . '" -y 2>&1', $output, $convert);
 
     // Debug
     // echo '<pre>' . print_r($output, 1) . ' </pre>';
@@ -36,7 +36,54 @@ if(isset($_POST['submit'])) {
 
 ?>
 
-<video controls autoplay loop>
-  <source src="./converted/<?= $video_mp4; ?>" type="video/mp4">;   
-  <source src="./converted/<?= $video_webm; ?>" type="video/webm">
-</video>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+    .hero {
+      height: 75vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-height: 100%;
+      min-width: 100%;
+      z-index: -1;
+      transform: translateY(-50%) translateX(-50%);
+    }
+
+    .hero h1 {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 60px;
+      color: #ffffff;
+      text-shadow: 3px 3px 0 rgba(0,0,0,.5);
+      z-index: 1;
+      transform: translateY(-50%) translateX(-50%);
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>Hero Video Demo</h1>
+    <video autoplay loop >
+      <source src="./converted/<?= $video_mp4; ?>" type="video/mp4">;   
+      <source src="./converted/<?= $video_webm; ?>" type="video/webm">
+    </video>
+  </div>
+</body>
+</html>
